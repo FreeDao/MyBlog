@@ -47,7 +47,7 @@ public class MainActivity extends Activity {
 	private ListView listView = null;
 	private Handler handler = null;
 	private MyBaseAdapter myBaseAdapter = null;
-	int[] colors = { Color.RED,Color.YELLOW,Color.GREEN,Color.BLUE,Color.RED,Color.YELLOW,Color.GREEN };
+	int[] colors = { Color.RED, Color.YELLOW, Color.GREEN, Color.BLUE, Color.RED, Color.YELLOW, Color.GREEN };
 	private final String BLOGURL = "http://www.picksomething.cn/";
 
 	@Override
@@ -87,8 +87,7 @@ public class MainActivity extends Activity {
 
 	/**
 	 * 
-	 * 通过正则表达式匹配首页数据
-	 * 将匹配的结果放到hashmap中
+	 * 通过正则表达式匹配首页数据 将匹配的结果放到hashmap中
 	 * 
 	 * @author caobin
 	 * @created 2014年10月15日
@@ -98,7 +97,8 @@ public class MainActivity extends Activity {
 		// TODO Auto-generated method stub
 		List<HashMap<String, Object>> result = new ArrayList<HashMap<String, Object>>();
 		String csdnString = httpGet(BLOGURL);
-//		Pattern p = Pattern.compile("<a href=\"(.*?)\" rel=\"bookmark\">\"(.*?)\"</a>");
+		// Pattern p =
+		// Pattern.compile("<a href=\"(.*?)\" rel=\"bookmark\">\"(.*?)\"</a>");
 		Pattern p = Pattern.compile("<h1 class=\"entry-title\">\\n.*?<a href=\"(.*?)\" rel=\"bookmark\">(.*?)</a>");
 		Matcher m = p.matcher(csdnString);
 		while (m.find()) {
@@ -209,22 +209,23 @@ public class MainActivity extends Activity {
 	protected void initListView() {
 		myBaseAdapter = new MyBaseAdapter(MainActivity.this, data);
 		listView.setAdapter(myBaseAdapter);
-		//设置间隔线，Orientation.RIGHT_LEFT表示颜色渐变的方向  
-		listView.setDivider(new GradientDrawable(Orientation.RIGHT_LEFT, colors));  
-        //设置间距高度  
-		listView.setDividerHeight(30); 
+		// 设置间隔线，Orientation.RIGHT_LEFT表示颜色渐变的方向
+		// listView.setDivider(new GradientDrawable(Orientation.RIGHT_LEFT,
+		// colors));
+		// 设置间距高度
+		listView.setDividerHeight(10);
 		listView.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 				// TODO Auto-generated method stub
 				HashMap<String, Object> map = data.get(position);
-				String url = (String)(map.get("url"));
+				String url = (String) (map.get("url"));
 				Intent intent = new Intent(Intent.ACTION_VIEW);
 				intent.setData(Uri.parse(url));
 				startActivity(intent);
 			}
-			
+
 		});
 	}
 
