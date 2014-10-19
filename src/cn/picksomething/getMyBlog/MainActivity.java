@@ -35,7 +35,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.Toast;
 import cn.picksomething.getMyBlog.adapter.MyBaseAdapter;
-import cn.picksomething.getcsdn.R;
+import cn.picksomething.getmyblog.R;
 
 /**
  * @author caobin

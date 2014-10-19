@@ -3,7 +3,7 @@ package cn.picksomething.getMyBlog.adapter;
 import java.util.HashMap;
 import java.util.List;
 
-import cn.picksomething.getcsdn.R;
+import cn.picksomething.getmyblog.R;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
