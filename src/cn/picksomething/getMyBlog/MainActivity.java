@@ -48,7 +48,7 @@ public class MainActivity extends Activity {
 	private Handler handler = null;
 	private MyBaseAdapter myBaseAdapter = null;
 	int[] colors = { Color.RED,Color.YELLOW,Color.GREEN,Color.BLUE,Color.RED,Color.YELLOW,Color.GREEN };
-	private final String CSNDURL = "http://www.picksomething.cn/";
+	private final String BLOGURL = "http://www.picksomething.cn/";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +73,7 @@ public class MainActivity extends Activity {
 				// TODO Auto-generated method stub
 				Message msg = new Message();
 				try {
-					data = getCSDN();
+					data = getMyBlog();
 					msg.what = data.size();
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -86,16 +86,18 @@ public class MainActivity extends Activity {
 	}
 
 	/**
-	 * 获取CSDN首页数据
+	 * 
+	 * 通过正则表达式匹配首页数据
+	 * 将匹配的结果放到hashmap中
 	 * 
 	 * @author caobin
 	 * @created 2014年10月15日
 	 * @return
 	 */
-	protected List<HashMap<String, Object>> getCSDN() {
+	protected List<HashMap<String, Object>> getMyBlog() {
 		// TODO Auto-generated method stub
 		List<HashMap<String, Object>> result = new ArrayList<HashMap<String, Object>>();
-		String csdnString = httpGet(CSNDURL);
+		String csdnString = httpGet(BLOGURL);
 //		Pattern p = Pattern.compile("<a href=\"(.*?)\" rel=\"bookmark\">\"(.*?)\"</a>");
 		Pattern p = Pattern.compile("<h1 class=\"entry-title\">\\n.*?<a href=\"(.*?)\" rel=\"bookmark\">(.*?)</a>");
 		Matcher m = p.matcher(csdnString);
