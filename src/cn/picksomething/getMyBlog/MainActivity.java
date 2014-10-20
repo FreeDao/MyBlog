@@ -95,8 +95,6 @@ public class MainActivity extends Activity {
 		// TODO Auto-generated method stub
 		List<HashMap<String, Object>> result = new ArrayList<HashMap<String, Object>>();
 		String csdnString = httpGet(BLOGURL);
-		// Pattern p =
-		// Pattern.compile("<a href=\"(.*?)\" rel=\"bookmark\">\"(.*?)\"</a>");
 		Pattern p = Pattern.compile("<h1 class=\"entry-title\">\\n.*?<a href=\"(.*?)\" rel=\"bookmark\">(.*?)</a>");
 		Matcher m = p.matcher(csdnString);
 		while (m.find()) {
@@ -207,11 +205,8 @@ public class MainActivity extends Activity {
 	protected void initListView() {
 		myBaseAdapter = new MyBaseAdapter(MainActivity.this, data);
 		listView.setAdapter(myBaseAdapter);
-		// 设置间隔线，Orientation.RIGHT_LEFT表示颜色渐变的方向
-		// listView.setDivider(new GradientDrawable(Orientation.RIGHT_LEFT,
-		// colors));
 		// 设置间距高度
-		listView.setDividerHeight(10);
+		listView.setDividerHeight(30);
 		listView.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
