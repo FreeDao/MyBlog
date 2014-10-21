@@ -207,7 +207,7 @@ public class MainActivity extends Activity {
 		myBaseAdapter = new MyBaseAdapter(MainActivity.this, data);
 		Header headerView = new Header(MainActivity.this);
 		headerView.setTextView("一路追梦想");
-		listView.addHeaderView(headerView);
+		listView.addHeaderView(headerView,null,false);
 		listView.setAdapter(myBaseAdapter);
 		// 设置间距高度
 		listView.setDividerHeight(30);
@@ -216,6 +216,7 @@ public class MainActivity extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 				// TODO Auto-generated method stub
+				position -= 1;
 				HashMap<String, Object> map = data.get(position);
 				String url = (String) (map.get("url"));
 				Intent intent = new Intent(Intent.ACTION_VIEW);
