@@ -33,6 +33,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.Toast;
 import cn.picksomething.getMyBlog.adapter.MyBaseAdapter;
+import cn.picksomething.getMyBlog.customView.Header;
 import cn.picksomething.getmyblog.R;
 
 /**
@@ -204,6 +205,9 @@ public class MainActivity extends Activity {
 	 */
 	protected void initListView() {
 		myBaseAdapter = new MyBaseAdapter(MainActivity.this, data);
+		Header headerView = new Header(MainActivity.this);
+		headerView.setTextView("一路追梦想");
+		listView.addHeaderView(headerView);
 		listView.setAdapter(myBaseAdapter);
 		// 设置间距高度
 		listView.setDividerHeight(30);
