@@ -11,7 +11,7 @@ import cn.picksomething.getmyblog.R;
 public class Header extends LinearLayout {
 	private static final String TAG = "Header";
 	private Context context;
-	private TextView textView;
+	private TextView title,intro;
 
 	public Header(Context context) {
 		super(context);
@@ -25,7 +25,8 @@ public class Header extends LinearLayout {
 		this.setGravity(Gravity.CENTER);
 		// 下面两句的顺序不能调换，先addview,然后才能通过findViewById找到该TextView
 		this.addView(view);
-		textView = (TextView) view.findViewById(R.id.header);
+		title = (TextView) view.findViewById(R.id.header);
+		intro = (TextView)view.findViewById(R.id.introduction);
 	}
 
 	/**
@@ -34,8 +35,9 @@ public class Header extends LinearLayout {
 	 * @created 2014年10月21日
 	 * @param text
 	 */
-	public void setTextView(String text) {
-		textView.setText(text);
+	public void setTextView(String title_str, String intro_str) {
+		title.setText(title_str);
+		intro.setText(intro_str);
 	}
 
 }

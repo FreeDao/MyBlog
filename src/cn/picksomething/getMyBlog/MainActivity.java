@@ -206,7 +206,7 @@ public class MainActivity extends Activity {
 	protected void initListView() {
 		myBaseAdapter = new MyBaseAdapter(MainActivity.this, data);
 		Header headerView = new Header(MainActivity.this);
-		headerView.setTextView("一路追梦想");
+		headerView.setTextView("一路追梦想", "Android,Linux,Python爱好者");
 		listView.addHeaderView(headerView, null, false);
 		listView.setAdapter(myBaseAdapter);
 		// 设置间距高度
