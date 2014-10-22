@@ -207,10 +207,10 @@ public class MainActivity extends Activity {
 		myBaseAdapter = new MyBaseAdapter(MainActivity.this, data);
 		Header headerView = new Header(MainActivity.this);
 		headerView.setTextView("一路追梦想");
-		listView.addHeaderView(headerView,null,false);
+		listView.addHeaderView(headerView, null, false);
 		listView.setAdapter(myBaseAdapter);
 		// 设置间距高度
-		listView.setDividerHeight(30);
+		// listView.setDividerHeight(30);
 		listView.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
