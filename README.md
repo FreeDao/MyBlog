@@ -3,7 +3,7 @@ MyBlogClient
 
 client for picksomething.cn
 
-![image](https://github.com/picksomething/MyBlogClient/blob/master/device-2014-10-19-112620.png)
+![image](https://github.com/picksomething/MyBlogClient/blob/master/device-2014-10-22-231055.png)
 
 实现方式：
 
