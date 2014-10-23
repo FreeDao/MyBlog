@@ -65,7 +65,6 @@ public class MainActivity extends Activity {
 	 * @created 2014年10月15日
 	 */
 	private void threadStart() {
-		// TODO Auto-generated method stub
 		new Thread() {
 			@Override
 			public void run() {
@@ -93,7 +92,6 @@ public class MainActivity extends Activity {
 	 * @return
 	 */
 	protected List<HashMap<String, Object>> getMyBlog() {
-		// TODO Auto-generated method stub
 		List<HashMap<String, Object>> result = new ArrayList<HashMap<String, Object>>();
 		String csdnString = httpGet(BLOGURL);
 		Pattern p = Pattern.compile("<h1 class=\"entry-title\">\\n.*?<a href=\"(.*?)\" rel=\"bookmark\">(.*?)</a>");
@@ -117,7 +115,6 @@ public class MainActivity extends Activity {
 	 * @return 网页内容的html字符串
 	 */
 	private String httpGet(String url) {
-		// TODO Auto-generated method stub
 		final int RETRY_TIME = 3;
 		HttpClient httpClient = null;
 		HttpGet httpGet = null;
@@ -167,7 +164,6 @@ public class MainActivity extends Activity {
 	 * @return
 	 */
 	private HttpClient getHttpClient() {
-		// TODO Auto-generated method stub
 		HttpParams httpParams = new BasicHttpParams();
 		// 设定连续超时和读取超时时间
 		HttpConnectionParams.setConnectionTimeout(httpParams, 6000);
@@ -182,7 +178,6 @@ public class MainActivity extends Activity {
 	 * @return
 	 */
 	private Handler getHandler() {
-		// TODO Auto-generated method stub
 		return new Handler() {
 			@Override
 			public void handleMessage(Message msg) {
@@ -215,7 +210,6 @@ public class MainActivity extends Activity {
 
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				// TODO Auto-generated method stub
 				position -= 1;
 				HashMap<String, Object> map = data.get(position);
 				String url = (String) (map.get("url"));
