@@ -7,6 +7,6 @@
     <string name="error">数据获取失败</string>
     <string name="blog_title">这是标题</string>
     <string name="blog_intro">这是简介</string>
-    <string name="slide_menu_title">slide menu title</string>
+    <string name="slide_menu_title">Hello World!</string>
 
 </resources>
