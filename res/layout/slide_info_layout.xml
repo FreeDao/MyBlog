@@ -4,13 +4,56 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
     
-    <TextView 
-        android:id="@+id/slide_title"
+    <LinearLayout 
+        android:id="@+id/myinfo_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="#04f3b4"
-        android:textSize="20sp"
+        android:padding="20dp"
+        android:orientation="horizontal">
+        
+        <ImageView 
+            android:id="@+id/myicon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/icon"
+            android:layout_marginLeft="30dp"
+            android:contentDescription="@string/app_name"/>
+        
+    <TextView 
+        android:id="@+id/slide_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textSize="24sp"
         android:text="@string/slide_menu_title"/>
+        
+        
+    </LinearLayout>
+    
+    <LinearLayout 
+        android:id="@+id/sort_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        
+        <TextView 
+        android:id="@+id/sort_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textSize="18sp"
+        android:drawableBottom="@drawable/item_divider"
+        android:text="@string/sort_title"/>
+        
+        <TextView 
+        android:id="@+id/function_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textSize="18sp"
+        android:drawableBottom="@drawable/item_divider"
+        android:text="@string/function_title"/>
+    </LinearLayout>
     
 
 </LinearLayout>
