@@ -23,6 +23,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity 
+            android:name="cn.picksomething.getMyBlog.MyWebView"
+            android:theme="@style/HomePage">
+            
+        </activity>
     </application>
 
 </manifest>
