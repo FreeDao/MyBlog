@@ -16,7 +16,7 @@
         <activity
             android:name="cn.picksomething.getMyBlog.MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/HomePage" >
+            android:theme="@style/NoTitle" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -27,12 +27,12 @@ import android.os.Message;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.Toast;
 import cn.picksomething.getMyBlog.adapter.MyBaseAdapter;
-import cn.picksomething.getMyBlog.customView.Header;
 import cn.picksomething.getmyblog.R;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
@@ -52,8 +52,11 @@ public class MainActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		setTheme(R.style.HomePage);
+		requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.customtitle);
 		listView = (ListView) findViewById(R.id.list);
 		handler = getHandler();
 		threadStart();
@@ -78,7 +81,7 @@ public class MainActivity extends Activity {
 		menu.attachToActivity(this, SlidingMenu.SLIDING_CONTENT);
 		menu.setMenu(R.layout.slide_info_layout); // 4）
 		/*** 初始化侧滑菜单 End ***/
-		
+
 	}
 
 	/**
@@ -223,9 +226,9 @@ public class MainActivity extends Activity {
 	 */
 	protected void initListView() {
 		myBaseAdapter = new MyBaseAdapter(MainActivity.this, data);
-		Header headerView = new Header(MainActivity.this);
-		headerView.setTextView("一路追梦想", "Android,Linux,Python爱好者");
-		listView.addHeaderView(headerView, null, false);
+		// Header headerView = new Header(MainActivity.this);
+		// headerView.setTextView("一路追梦想", "Android,Linux,Python爱好者");
+		// listView.addHeaderView(headerView, null, false);
 		listView.setAdapter(myBaseAdapter);
 		// 设置间距高度
 		// listView.setDividerHeight(30);
@@ -233,19 +236,17 @@ public class MainActivity extends Activity {
 
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				position -= 1;
+				// position -= 1;
 				HashMap<String, Object> map = data.get(position);
 				String url = (String) (map.get("url"));
 				Intent intent = new Intent(MainActivity.this, MyWebView.class);
 				intent.putExtra("url", url);
-				// Intent intent = new Intent(Intent.ACTION_VIEW);
-//				intent.setData(Uri.parse(url));
 				startActivity(intent);
 			}
 
 		});
 	}
-	
+
 	@Override
 	protected void onDestroy() {
 		// TODO Auto-generated method stub
