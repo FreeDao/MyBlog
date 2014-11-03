@@ -18,12 +18,9 @@ import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
 import org.apache.http.util.EntityUtils;
 
-import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -37,6 +34,8 @@ import android.widget.Toast;
 import cn.picksomething.getMyBlog.adapter.MyBaseAdapter;
 import cn.picksomething.getMyBlog.customView.Header;
 import cn.picksomething.getmyblog.R;
+
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 /**
  * @author caobin
@@ -58,6 +57,16 @@ public class MainActivity extends Activity {
 		listView = (ListView) findViewById(R.id.list);
 		handler = getHandler();
 		threadStart();
+		initSlideMenu();
+	}
+
+	/**
+	 * 
+	 * @author caobin
+	 * @created 2014年11月3日
+	 */
+	private void initSlideMenu() {
+		// TODO Auto-generated method stub
 		/*** 初始化侧滑菜单 Begin ***/
 		SlidingMenu menu = new SlidingMenu(this);
 		menu.setMode(SlidingMenu.LEFT);
@@ -69,6 +78,7 @@ public class MainActivity extends Activity {
 		menu.attachToActivity(this, SlidingMenu.SLIDING_CONTENT);
 		menu.setMenu(R.layout.slide_info_layout); // 4）
 		/*** 初始化侧滑菜单 End ***/
+		
 	}
 
 	/**
@@ -234,6 +244,12 @@ public class MainActivity extends Activity {
 			}
 
 		});
+	}
+	
+	@Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		super.onDestroy();
 	}
 
 	@Override
