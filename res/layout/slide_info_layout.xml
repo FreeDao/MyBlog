@@ -3,122 +3,59 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
+    
+<!-- 顶部头像，姓名，标签 -->
+    <include layout="@layout/slidemenu_myinfo" />
 
-    <LinearLayout
-        android:id="@+id/myinfo_layout"
-        android:layout_width="match_parent"
+   <LinearLayout
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="5dp" >
-
-        <ImageView
-            android:id="@+id/myicon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
-            android:background="@drawable/icon"
-            android:contentDescription="@string/app_name" />
-
-        <TextView
-            android:id="@+id/slide_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:text="@string/slide_menu_title"
-            android:textSize="28sp" />
-    </LinearLayout>
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/item_divider"
-        android:contentDescription="@string/app_name" />
-
-    <LinearLayout
-        android:id="@+id/sort_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:orientation="vertical" >
-
+        <!-- 常用 -->
         <TextView
+            android:id="@+id/left_tv_commom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:drawableBottom="@drawable/item_divider"
+            android:paddingBottom="3dip"
+            android:paddingStart="20dp"
+            android:paddingTop="3dip"
             android:text="@string/sort_title"
-            android:textSize="18sp" />
-
+            android:textColor="@color/white" />
+                 
+       <ImageView
+           android:layout_width="fill_parent"
+           android:layout_height="wrap_content"
+           android:background="@drawable/divider_line"/>
+       <!-- 常用列表 --><!-- 常用列表与更多列表使用同一个item布局 自定义适配器 -->
+       <ListView 
+           android:id="@+id/listview_sort"
+           android:layout_width="fill_parent"
+           android:layout_height="wrap_content"
+           android:cacheColorHint="#00000000"
+           android:divider="@drawable/divider_line_2"/>
+       
+       
+       
+       <!-- 设置 -->
         <TextView
+            android:id="@+id/setting"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
-            android:text="@string/android"
-            android:textSize="24sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
-            android:text="@string/c"
-            android:textSize="24sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
-            android:text="@string/java"
-            android:textSize="24sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
-            android:text="@string/linux"
-            android:textSize="24sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
-            android:text="@string/career"
-            android:textSize="24sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
-            android:text="@string/twitter"
-            android:textSize="24sp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/function_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical" >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:drawableBottom="@drawable/item_divider"
+            android:paddingBottom="3dp"
+            android:paddingStart="20dp"
+            android:paddingTop="3dp"
             android:text="@string/function_title"
-            android:textSize="18sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
-            android:text="@string/articles_rss"
-            android:textSize="24sp" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
-            android:text="@string/comments_rss"
-            android:textSize="24sp" />
+            android:textColor="@color/white" />
+       <ImageView
+           android:layout_width="fill_parent"
+           android:layout_height="wrap_content"
+           android:background="@drawable/divider_line"/>
+       <ListView  
+           android:id="@+id/listview_function"
+           android:layout_width="fill_parent"
+           android:layout_height="wrap_content"
+           android:cacheColorHint="#00000000"
+           android:divider="@drawable/divider_line_2"/>
     </LinearLayout>
 
 </LinearLayout>

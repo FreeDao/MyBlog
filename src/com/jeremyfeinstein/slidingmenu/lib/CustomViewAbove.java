@@ -178,6 +178,8 @@ public class CustomViewAbove extends ViewGroup {
 					case 1:
 						mViewBehind.setChildrenEnabled(false);
 						break;
+						default:
+							break;
 					}
 				}
 			}
@@ -652,6 +654,8 @@ public class CustomViewAbove extends ViewGroup {
 		case MotionEventCompat.ACTION_POINTER_UP:
 			onSecondaryPointerUp(ev);
 			break;
+			default:
+				break;
 		}
 
 		if (!mIsBeingDragged) {
@@ -770,6 +774,8 @@ public class CustomViewAbove extends ViewGroup {
 				break;
 			mLastMotionX = MotionEventCompat.getX(ev, pointerIndex);
 			break;
+			default:
+				break;
 		}
 		return true;
 	}
@@ -950,6 +956,8 @@ public class CustomViewAbove extends ViewGroup {
 					}
 				}
 				break;
+				default:
+					break;
 			}
 		}
 		return handled;

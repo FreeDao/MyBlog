@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <lint>
+    <issue id="ClickableViewAccessibility">
+        <ignore path="src/com/jeremyfeinstein/slidingmenu/lib/CustomViewAbove.java" />
+    </issue>
+    <issue id="FloatMath">
+        <ignore path="src/com/jeremyfeinstein/slidingmenu/lib/CustomViewAbove.java" />
+    </issue>
     <issue id="HandlerLeak" severity="ignore" />
     <issue id="InflateParams">
         <ignore path="src/cn/picksomething/getMyBlog/adapter/MyBaseAdapter.java" />
+        <ignore path="src/cn/picksomething/getMyBlog/customView/Header.java" />
+    </issue>
+    <issue id="RtlHardcoded">
+        <ignore path="src/com/jeremyfeinstein/slidingmenu/lib/SlidingMenu.java" />
     </issue>
 </lint>

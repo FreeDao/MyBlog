@@ -9,19 +9,12 @@ import android.widget.TextView;
 import cn.picksomething.getmyblog.R;
 
 public class Header extends LinearLayout {
-	private static final String TAG = "Header";
-	private Context context;
 	private TextView title,intro;
 
 	public Header(Context context) {
 		super(context);
 		// TODO Auto-generated constructor stub
-		this.context = context;
 		View view = LayoutInflater.from(context).inflate(R.layout.header_layout, null);
-		// LinearLayout.LayoutParams lp = new
-		// LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,
-		// LayoutParams.MATCH_PARENT);
-		// setOrientation(LinearLayout.VERTICAL);
 		this.setGravity(Gravity.CENTER);
 		// 下面两句的顺序不能调换，先addview,然后才能通过findViewById找到该TextView
 		this.addView(view);

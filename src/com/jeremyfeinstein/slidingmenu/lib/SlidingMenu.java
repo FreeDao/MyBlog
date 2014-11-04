@@ -334,6 +334,8 @@ public class SlidingMenu extends RelativeLayout {
 			if (content.getBackground() == null)
 				content.setBackgroundResource(background);
 			break;
+			default:
+				break;
 		}
 	}
 
@@ -636,6 +638,7 @@ public class SlidingMenu extends RelativeLayout {
 			method.invoke(display, parameter);
 			width = parameter.x;
 		} catch (Exception e) {
+			e.printStackTrace();
 			width = display.getWidth();
 		}
 		setBehindOffset(width-i);

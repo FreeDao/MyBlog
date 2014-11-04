@@ -58,7 +58,7 @@ public class MyBaseAdapter extends BaseAdapter {
 		return convertView;
 	}
 
-	final class ViewHolder {
+	final static class ViewHolder {
 		TextView title;
 	}
 

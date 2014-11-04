@@ -20,7 +20,6 @@ import org.apache.http.util.EntityUtils;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -47,8 +46,7 @@ public class MainActivity extends Activity {
 	private ListView listView = null;
 	private Handler handler = null;
 	private MyBaseAdapter myBaseAdapter = null;
-	int[] colors = { Color.RED, Color.YELLOW, Color.GREEN, Color.BLUE, Color.RED, Color.YELLOW, Color.GREEN };
-	private final String BLOGURL = "http://www.picksomething.cn/";
+	private final static String BLOGURL = "http://www.picksomething.cn/";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
