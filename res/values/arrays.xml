@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="sorts">
+        <item>Android</item>
+        <item>C/C++</item>
+        <item>Java</item>
+        <item>Linux</item>
+        <item>碎碎念</item>
+    </string-array>
+    <string-array name="functions">
+        <item>文章RSS</item>
+        <item>评论RSS</item>
+    </string-array>
+
+</resources>
