@@ -8,9 +8,20 @@
         <item>Linux</item>
         <item>碎碎念</item>
     </string-array>
+    <string-array name="sorts_url">
+        <item>http://www.picksomething.cn/?cat=5</item>
+        <item>http://www.picksomething.cn/?cat=49</item>
+        <item>http://www.picksomething.cn/?cat=2</item>
+        <item>http://www.picksomething.cn/?cat=4</item>
+        <item>http://www.picksomething.cn/?cat=6</item>
+    </string-array>
     <string-array name="functions">
         <item>文章RSS</item>
         <item>评论RSS</item>
+    </string-array>
+    <string-array name="functions_url">
+        <item>http://www.picksomething.cn/?feed=rss2</item>
+        <item>http://www.picksomething.cn/?feed=comments-rss2</item>
     </string-array>
 
 </resources>
