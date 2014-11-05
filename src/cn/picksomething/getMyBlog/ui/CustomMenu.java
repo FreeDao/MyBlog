@@ -21,6 +21,8 @@ public class CustomMenu extends Fragment {
 	private ListView functionListView = null;
 	private List<SettingItems> mSorts = null;
 	private List<SettingItems> mFunctions = null;
+	private SlideMenuAdapter sortAdapter = null;
+	private SlideMenuAdapter functionAdapter = null;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -68,10 +70,19 @@ public class CustomMenu extends Fragment {
 		}
 	}
 
+	/**
+	 * 
+	 * @author caobin
+	 * @created 2014年11月5日
+	 */
 	private void bindDate() {
 		// TODO Auto-generated method stub
-		sortListView.setAdapter(new SlideMenuAdapter(mContext, mSorts));
-		functionListView.setAdapter(new SlideMenuAdapter(mContext, mFunctions));
+		sortAdapter = new SlideMenuAdapter(mContext, mSorts);
+		functionAdapter = new SlideMenuAdapter(mContext, mFunctions);
+		sortListView.setAdapter(sortAdapter);
+		functionListView.setAdapter(functionAdapter);
+		sortAdapter.notifyDataSetChanged();
+		functionAdapter.notifyDataSetChanged();
 	}
 
 }
