@@ -119,7 +119,7 @@ public class MainActivity extends SlidingFragmentActivity {
 	protected List<HashMap<String, Object>> getMyBlog() {
 		List<HashMap<String, Object>> result = new ArrayList<HashMap<String, Object>>();
 		String myBlogString = httpGet(BLOGURL);
-		Pattern p = Pattern.compile("<h1 class=\"entry-title\">\\n.*?<a href=\"(.*?)\" rel=\"bookmark\">(.*?)</a>");
+		Pattern p = Pattern.compile("<h1 class=\"entry-title\"> <a href=\"(.*?)\" title=\"(.*?)\">");
 		Matcher m = p.matcher(myBlogString);
 		while (m.find()) {
 			MatchResult mr = m.toMatchResult();
