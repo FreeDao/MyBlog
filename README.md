@@ -5,11 +5,7 @@ client for picksomething.cn
 
 home page screenshot:
 
-![image](https://github.com/picksomething/MyBlogClient/blob/master/device-2014-10-22-231055.png)
-
-slidemenu page layout(uncompleted)
-
-![image](https://github.com/picksomething/MyBlogClient/blob/master/device-2014-10-26-000555.png)
+![image](https://github.com/picksomething/MyBlogClient/blob/master/device-2015-03-09-113132.png)
 
 实现方式：
 
