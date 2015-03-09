@@ -16,32 +16,27 @@ public class MyBaseAdapter extends BaseAdapter {
 	private List<HashMap<String, Object>> listData;
 
 	public MyBaseAdapter(Context context, List<HashMap<String, Object>> listData) {
-		// TODO Auto-generated constructor stub
 		this.context = context;
 		this.listData = listData;
 	}
 
 	@Override
 	public int getCount() {
-		// TODO Auto-generated method stub
 		return listData.size();
 	}
 
 	@Override
 	public HashMap<String, Object> getItem(int position) {
-		// TODO Auto-generated method stub
 		return listData.get(position);
 	}
 
 	@Override
 	public long getItemId(int position) {
-		// TODO Auto-generated method stub
 		return position;
 	}
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		// TODO Auto-generated method stub
 		ViewHolder viewHolder = null;
 		if (convertView == null) {
 			viewHolder = new ViewHolder();

@@ -119,7 +119,7 @@ public class MainActivity extends SlidingFragmentActivity {
 	protected List<HashMap<String, Object>> getMyBlog() {
 		List<HashMap<String, Object>> result = new ArrayList<HashMap<String, Object>>();
 		String myBlogString = httpGet(BLOGURL);
-		Pattern p = Pattern.compile("<h1 class=\"entry-title\"> <a href=\"(.*?)\" title=\"(.*?)\">");
+		Pattern p = Pattern.compile("<h1 class=\"entry-title\"><a href=\"(.*?)\" rel=\"bookmark\">(.*?)</a></h1>");
 		Matcher m = p.matcher(myBlogString);
 		while (m.find()) {
 			MatchResult mr = m.toMatchResult();
@@ -225,17 +225,11 @@ public class MainActivity extends SlidingFragmentActivity {
 	 */
 	protected void initListView() {
 		myBaseAdapter = new MyBaseAdapter(MainActivity.this, data);
-		// Header headerView = new Header(MainActivity.this);
-		// headerView.setTextView("一路追梦想", "Android,Linux,Python爱好者");
-		// listView.addHeaderView(headerView, null, false);
 		listView.setAdapter(myBaseAdapter);
-		// 设置间距高度
-		// listView.setDividerHeight(30);
 		listView.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				// position -= 1;
 				HashMap<String, Object> map = data.get(position);
 				String url = (String) (map.get("url"));
 				Intent intent = new Intent(MainActivity.this, MyWebView.class);
@@ -250,24 +244,5 @@ public class MainActivity extends SlidingFragmentActivity {
 	protected void onDestroy() {
 		// TODO Auto-generated method stub
 		super.onDestroy();
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			return true;
-		}
-		return super.onOptionsItemSelected(item);
 	}
 }
