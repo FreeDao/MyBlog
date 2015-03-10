@@ -10,29 +10,17 @@ import android.widget.Toast;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.params.BasicHttpParams;
-import org.apache.http.params.HttpConnectionParams;
-import org.apache.http.params.HttpParams;
-import org.apache.http.util.EntityUtils;
-
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.regex.MatchResult;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import cn.picksomething.getMyBlog.adapter.MyBaseAdapter;
+import cn.picksomething.getMyBlog.http.HttpUtils;
 import cn.picksomething.getMyBlog.ui.CustomMenu;
 import cn.picksomething.getmyblog.R;
 import zrc.widget.SimpleFooter;
 import zrc.widget.SimpleHeader;
 import zrc.widget.ZrcListView;
+
 
 /**
  * @author caobin
@@ -41,14 +29,16 @@ public class MainActivity extends SlidingFragmentActivity {
 
     private static final int FIRST_REQUEST = 0;
     private static final int REQUEST_ERROR = -1;
-    private static final int REFRESH_DATA = 1;
+    private static final int LOAD_MORE_DATA = 1;
+    private static final int STOP_LOAD_DATA = 2;
+    private static final String TAG = "caobin";
     private ArrayList<HashMap<String, Object>> data = null;
     private ZrcListView listView = null;
-    Handler handler = null;
     private Handler mHander = null;
     private MyBaseAdapter myBaseAdapter = null;
     private int pageId = 1;
-    private String url = "http://www.picksomething.cn/?paged=" + pageId;
+    private String url = "http://www.picksomething.cn";
+    Handler handler = null;
 
 
     @Override
@@ -146,12 +136,17 @@ public class MainActivity extends SlidingFragmentActivity {
                 Message msg = new Message();
                 ArrayList<HashMap<String, Object>> tempData = null;
                 pageId++;
-                tempData = getMyBlog(url);
+                url = url + "/?paged=" + pageId;
+                Log.d("caobin", "url = " + url);
+                tempData = HttpUtils.getMyBlog(url);
+                Log.d(TAG, "tempDate size is " + tempData.size());
+                data.addAll(tempData);
+                Log.d(TAG, "date size is " + data.size());
+                msg.what = LOAD_MORE_DATA;
                 if (null == tempData) {
-                    data.addAll(tempData);
-                    msg.what = REFRESH_DATA;
+
                 } else {
-                    //listView.stopLoadMore();
+                    msg.what = STOP_LOAD_DATA;
                 }
                 handler.sendMessage(msg);
             }
@@ -190,11 +185,11 @@ public class MainActivity extends SlidingFragmentActivity {
             public void run() {
                 Message msg = new Message();
                 try {
-                    data = getMyBlog(url);
+                    data = HttpUtils.getMyBlog(url);
                     msg.what = FIRST_REQUEST;
                 } catch (Exception e) {
-                    e.printStackTrace();
                     msg.what = REQUEST_ERROR;
+                    e.printStackTrace();
                 }
                 super.run();
                 handler.sendMessage(msg);
@@ -202,88 +197,6 @@ public class MainActivity extends SlidingFragmentActivity {
         }.start();
     }
 
-    /**
-     * 通过正则表达式匹配首页数据 将匹配的结果放到hashmap中
-     *
-     * @return
-     * @author caobin
-     * @created 2014年10月15日
-     */
-    protected ArrayList<HashMap<String, Object>> getMyBlog(String pageUrl) {
-        ArrayList<HashMap<String, Object>> result = new ArrayList<HashMap<String, Object>>();
-        String myBlogString = httpGet(pageUrl);
-        Pattern p = Pattern.compile("<h1 class=\"entry-title\"><a href=\"(.*?)\" rel=\"bookmark\">(.*?)</a></h1>");
-        Matcher m = p.matcher(myBlogString);
-        while (m.find()) {
-            MatchResult mr = m.toMatchResult();
-            HashMap<String, Object> map = new HashMap<String, Object>();
-            map.put("url", mr.group(1));
-            map.put("rel", mr.group(2));
-            result.add(map);
-        }
-        return result;
-    }
-
-    /**
-     * 请求URL，失败时尝试3次
-     *
-     * @param pageUrl
-     * @return 网页内容的html字符串
-     * @author caobin
-     * @created 2014年10月15日
-     */
-    private String httpGet(String pageUrl) {
-        final int RETRY_TIME = 3;
-        HttpClient httpClient = null;
-        HttpGet httpGet = null;
-
-        String responseBody = "";
-        int time = 0;
-        do {
-            httpClient = getHttpClient();
-            httpGet = new HttpGet(pageUrl);
-            try {
-                HttpResponse response = httpClient.execute(httpGet);
-                if (response.getStatusLine().getStatusCode() == 200) {
-                    // 用UTF-8编码转化为字符串
-                    byte[] bResult = EntityUtils.toByteArray(response.getEntity());
-                    if (bResult != null) {
-                        responseBody = new String(bResult, "utf-8");
-                    }
-                }
-                break;
-            } catch (ClientProtocolException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                time++;
-                if (time < RETRY_TIME) {
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e1) {
-                        e1.printStackTrace();
-                    }
-                    continue;
-                }
-                e.printStackTrace();
-            } finally {
-                httpClient = null;
-            }
-        } while (time < RETRY_TIME);
-        return responseBody;
-    }
-
-    /**
-     * @return
-     * @author caobin
-     * @created 2014年10月15日
-     */
-    private HttpClient getHttpClient() {
-        HttpParams httpParams = new BasicHttpParams();
-        // 设定连续超时和读取超时时间
-        HttpConnectionParams.setConnectionTimeout(httpParams, 6000);
-        HttpConnectionParams.setSoTimeout(httpParams, 3000);
-        return new DefaultHttpClient(httpParams);
-    }
 
     /**
      * @return
@@ -295,16 +208,18 @@ public class MainActivity extends SlidingFragmentActivity {
             @Override
             public void handleMessage(Message msg) {
                 super.handleMessage(msg);
-                switch (msg.what){
+                switch (msg.what) {
                     case REQUEST_ERROR:
                         Toast.makeText(MainActivity.this, R.string.error, Toast.LENGTH_SHORT).show();
                         break;
                     case FIRST_REQUEST:
                         initListView();
                         break;
-                    case REFRESH_DATA:
+                    case LOAD_MORE_DATA:
                         refreshListView();
                         break;
+                    case STOP_LOAD_DATA:
+                        listView.stopLoadMore();
                     default:
                         break;
                 }
@@ -313,7 +228,7 @@ public class MainActivity extends SlidingFragmentActivity {
     }
 
     private void refreshListView() {
-        Log.d("caobin","date size is " + data.size());
+        Log.d("caobin", "date size is " + data.size());
         myBaseAdapter.notifyDataSetChanged();
         listView.setLoadMoreSuccess();
     }
@@ -325,7 +240,7 @@ public class MainActivity extends SlidingFragmentActivity {
      * @created 2014年10月15日
      */
     protected void initListView() {
-        Log.d("caobin","date size is " + data.size());
+        Log.d("caobin", "date size is " + data.size());
         myBaseAdapter = new MyBaseAdapter(MainActivity.this, data);
         listView.setAdapter(myBaseAdapter);
         //listView.refresh(); // 主动下拉刷新
@@ -345,5 +260,6 @@ public class MainActivity extends SlidingFragmentActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        pageId = 1;
     }
 }

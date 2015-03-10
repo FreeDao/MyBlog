@@ -41,13 +41,15 @@ public class MyBaseAdapter extends BaseAdapter {
 		if (convertView == null) {
 			viewHolder = new ViewHolder();
 			convertView = LayoutInflater.from(context).inflate(R.layout.list_item, null);
-			viewHolder.title = (TextView) convertView.findViewById(R.id.ItemTitle);
+			viewHolder.title = (TextView) convertView.findViewById(R.id.itemTitle);
+            viewHolder.date = (TextView) convertView.findViewById(R.id.itemDate);
 			// 将viewHolder绑定到convertView
 			convertView.setTag(viewHolder);
 		} else {
 			viewHolder = (ViewHolder) convertView.getTag();
 		}
-		viewHolder.title.setText((String) getItem(position).get("rel"));
+		viewHolder.title.setText(getItem(position).get("name").toString());
+        viewHolder.date.setText("发表于" + getItem(position).get("date").toString());
 		viewHolder.title.setSelected(true);
 
 		return convertView;
@@ -55,6 +57,7 @@ public class MyBaseAdapter extends BaseAdapter {
 
 	final static class ViewHolder {
 		TextView title;
+        TextView date;
 	}
 
 }
