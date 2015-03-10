@@ -1,21 +1,28 @@
 MyBlogClient
 ============
 
-client for picksomething.cn
+Android client for www.picksomething.cn
 
-home page screenshot:
+pull to fresh screenshot:
 
-![image](https://github.com/picksomething/MyBlogClient/blob/master/device-2015-03-10-144221.png)
+![image](https://github.com/picksomething/MyBlogClient/blob/master/device-2015-03-10-151835.png)
 
-实现方式：
+push to load more screenshot:
+
+![image](https://github.com/picksomething/MyBlogClient/blob/master/device-2015-03-10-151931.png)
+
+用到的开源库:一个顺滑又漂亮的Android下拉刷新与加载更多列表组件。 
+https://github.com/zarics/ZrcListView
+
+
+APP实现方式：
 
 step1 http请求，获取html页面
 
-step2 解析html页面，通过正则表达式匹配初title和URL，存入hashmap
+step2 解析html页面，通过正则表达式匹配出title,data和url，存入hashmap
 
 step3 通过自定义的适配器绑定到listview上面，并显示出来
 
+默认加载第一页的文章,下拉显示下一页的数据
+
 目前还有很多不完善的地方，后面再优化
-
-后面有空再写一个通过连接自己的数据库获取数据的方式的客户端
-
