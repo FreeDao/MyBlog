@@ -5,7 +5,7 @@ client for picksomething.cn
 
 home page screenshot:
 
-![image](https://github.com/picksomething/MyBlogClient/blob/master/device-2015-03-09-113132.png)
+![image](https://github.com/picksomething/MyBlogClient/blob/master/device-2015-03-10-144221.png)
 
 实现方式：
 
