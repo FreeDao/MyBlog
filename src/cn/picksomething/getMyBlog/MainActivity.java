@@ -118,7 +118,7 @@ public class MainActivity extends SlidingFragmentActivity {
         mHander.postDelayed(new Runnable() {
             @Override
             public void run() {
-                if (pageId == 1) {
+                if (pageId != 0) {
                     myBaseAdapter.notifyDataSetChanged();
                     listView.setRefreshSuccess("加载成功"); // 通知加载成功
                     listView.startLoadMore(); // 开启LoadingMore功能
@@ -136,19 +136,19 @@ public class MainActivity extends SlidingFragmentActivity {
                 Message msg = new Message();
                 ArrayList<HashMap<String, Object>> tempData = null;
                 pageId++;
-                url = url + "/?paged=" + pageId;
-                Log.d("caobin", "url = " + url);
-                tempData = HttpUtils.getMyBlog(url);
+                String tempurl = "http://www.picksomething.cn/?paged=" + pageId;
+                Log.d("caobin", "tempurl = " + tempurl);
+                tempData = HttpUtils.getMyBlog(tempurl);
                 Log.d(TAG, "tempDate size is " + tempData.size());
-                data.addAll(tempData);
-                Log.d(TAG, "date size is " + data.size());
-                msg.what = LOAD_MORE_DATA;
-                if (null == tempData) {
-
+                if (null != tempData) {
+                    data.addAll(tempData);
+                    Log.d(TAG, "date size is " + data.size());
+                    msg.what = LOAD_MORE_DATA;
                 } else {
                     msg.what = STOP_LOAD_DATA;
                 }
                 handler.sendMessage(msg);
+                tempData = null;
             }
         }).start();
     }
@@ -210,15 +210,19 @@ public class MainActivity extends SlidingFragmentActivity {
                 super.handleMessage(msg);
                 switch (msg.what) {
                     case REQUEST_ERROR:
+                        Log.d("caobin", "request error");
                         Toast.makeText(MainActivity.this, R.string.error, Toast.LENGTH_SHORT).show();
                         break;
                     case FIRST_REQUEST:
+                        Log.d("caobin", "first request");
                         initListView();
                         break;
                     case LOAD_MORE_DATA:
+                        Log.d("caobin", "load more");
                         refreshListView();
                         break;
                     case STOP_LOAD_DATA:
+                        Log.d("caobin", "stop load more");
                         listView.stopLoadMore();
                     default:
                         break;
@@ -228,7 +232,7 @@ public class MainActivity extends SlidingFragmentActivity {
     }
 
     private void refreshListView() {
-        Log.d("caobin", "date size is " + data.size());
+        Log.d("caobin", "refreshListView date size is " + data.size());
         myBaseAdapter.notifyDataSetChanged();
         listView.setLoadMoreSuccess();
     }
@@ -243,7 +247,7 @@ public class MainActivity extends SlidingFragmentActivity {
         Log.d("caobin", "date size is " + data.size());
         myBaseAdapter = new MyBaseAdapter(MainActivity.this, data);
         listView.setAdapter(myBaseAdapter);
-        //listView.refresh(); // 主动下拉刷新
+        listView.refresh(); // 主动下拉刷新
         /**listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
         @Override public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

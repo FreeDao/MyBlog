@@ -5,6 +5,7 @@ import java.util.List;
 
 import cn.picksomething.getmyblog.R;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,7 @@ public class MyBaseAdapter extends BaseAdapter {
 
 	@Override
 	public int getCount() {
+        Log.d("caobin","listData.size is " + listData.size());
 		return listData.size();
 	}
 
