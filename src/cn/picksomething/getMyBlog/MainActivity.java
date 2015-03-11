@@ -1,9 +1,11 @@
 package cn.picksomething.getMyBlog;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.view.View;
 import android.view.Window;
 import android.widget.Toast;
 
@@ -248,17 +250,16 @@ public class MainActivity extends SlidingFragmentActivity {
         myBaseAdapter = new MyBaseAdapter(MainActivity.this, data);
         listView.setAdapter(myBaseAdapter);
         listView.refresh(); // 主动下拉刷新
-        /**listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-        @Override public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        HashMap<String, Object> map = data.get(position);
-        String url = (String) (map.get("url"));
-        Intent intent = new Intent(MainActivity.this, MyWebView.class);
-        intent.putExtra("url", url);
-        startActivity(intent);
-        }
-
-        });**/
+        listView.setOnItemClickListener(new ZrcListView.OnItemClickListener() {
+            @Override
+            public void onItemClick(ZrcListView parent, View view, int position, long id) {
+                HashMap<String, Object> map = data.get(position);
+                String url = (String) (map.get("url"));
+                Intent intent = new Intent(MainActivity.this, MyWebView.class);
+                intent.putExtra("url", url);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
