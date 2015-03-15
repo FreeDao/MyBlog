@@ -1,4 +1,4 @@
-package cn.picksomething.getMyBlog.adapter;
+package cn.picksomething.getmyblog.adapter;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
-import cn.picksomething.getMyBlog.model.SettingItems;
+import cn.picksomething.getmyblog.model.SettingItems;
 import cn.picksomething.getmyblog.R;
 
 public class SlideMenuAdapter extends BaseAdapter {

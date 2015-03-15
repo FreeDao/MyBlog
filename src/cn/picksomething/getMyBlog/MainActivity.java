@@ -1,5 +1,6 @@
-package cn.picksomething.getMyBlog;
+package cn.picksomething.getmyblog;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -9,16 +10,11 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Toast;
 
-import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
-import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import cn.picksomething.getMyBlog.adapter.MyBaseAdapter;
-import cn.picksomething.getMyBlog.http.HttpUtils;
-import cn.picksomething.getMyBlog.ui.CustomMenu;
-import cn.picksomething.getmyblog.R;
+import cn.picksomething.getmyblog.adapter.MyBaseAdapter;
+import cn.picksomething.getmyblog.http.HttpUtils;
 import zrc.widget.SimpleFooter;
 import zrc.widget.SimpleHeader;
 import zrc.widget.ZrcListView;
@@ -27,7 +23,7 @@ import zrc.widget.ZrcListView;
 /**
  * @author caobin
  */
-public class MainActivity extends SlidingFragmentActivity {
+public class MainActivity extends Activity {
 
     private static final int FIRST_REQUEST = 0;
     private static final int REQUEST_ERROR = -1;
@@ -50,7 +46,6 @@ public class MainActivity extends SlidingFragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.customtitle);
-        initSlideMenu(savedInstanceState);
         findViews();
         initDatas();
         startDownloadDatas(url);
@@ -153,26 +148,6 @@ public class MainActivity extends SlidingFragmentActivity {
                 tempData = null;
             }
         }).start();
-    }
-
-
-    /**
-     * @param savedInstanceState
-     * @author caobin
-     * @created 2014年11月5日
-     */
-    private void initSlideMenu(Bundle savedInstanceState) {
-        /*** 初始化侧滑菜单 Begin ***/
-        setBehindContentView(R.layout.menu_frame);
-        getFragmentManager().beginTransaction().replace(R.id.menu_frame, new CustomMenu()).commit();
-        SlidingMenu menu = getSlidingMenu();
-        menu.setShadowWidthRes(R.dimen.shadow_width); // 1）
-        menu.setShadowDrawable(R.drawable.shadow); // 2）
-        menu.setBehindOffsetRes(R.dimen.slidingmenu_offset); // 3）
-        menu.setFadeDegree(0.35f);
-        menu.setTouchModeAbove(SlidingMenu.SLIDING_CONTENT);
-        /*** 初始化侧滑菜单 End ***/
-
     }
 
     /**

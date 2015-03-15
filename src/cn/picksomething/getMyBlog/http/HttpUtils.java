@@ -1,4 +1,4 @@
-package cn.picksomething.getMyBlog.http;
+package cn.picksomething.getmyblog.http;
 
 import android.util.Log;
 

@@ -1,4 +1,4 @@
-package cn.picksomething.getMyBlog.customView;
+package cn.picksomething.getmyblog.customView;
 
 import android.content.Context;
 import android.view.Gravity;

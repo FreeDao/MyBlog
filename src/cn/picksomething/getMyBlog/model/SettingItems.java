@@ -1,4 +1,4 @@
-package cn.picksomething.getMyBlog.model;
+package cn.picksomething.getmyblog.model;
 
 public class SettingItems {
 

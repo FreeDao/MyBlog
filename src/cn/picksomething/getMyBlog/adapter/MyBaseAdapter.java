@@ -1,4 +1,4 @@
-package cn.picksomething.getMyBlog.adapter;
+package cn.picksomething.getmyblog.adapter;
 
 import java.util.HashMap;
 import java.util.List;

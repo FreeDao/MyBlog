@@ -1,4 +1,4 @@
-package cn.picksomething.getMyBlog.ui;
+package cn.picksomething.getmyblog.ui;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,9 +15,9 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import cn.picksomething.getMyBlog.MyWebView;
-import cn.picksomething.getMyBlog.adapter.SlideMenuAdapter;
-import cn.picksomething.getMyBlog.model.SettingItems;
+import cn.picksomething.getmyblog.MyWebView;
+import cn.picksomething.getmyblog.adapter.SlideMenuAdapter;
+import cn.picksomething.getmyblog.model.SettingItems;
 import cn.picksomething.getmyblog.R;
 
 public class CustomMenu extends Fragment {
