@@ -1,13 +1,19 @@
 package cn.picksomething.getmyblog;
 
 import android.app.Activity;
+import android.app.Fragment;
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -36,6 +42,9 @@ public class MainActivity extends Activity {
     private MyBaseAdapter myBaseAdapter = null;
     private int pageId = 1;
     private String url = "http://www.picksomething.cn";
+    private String[] mSorts;
+    private DrawerLayout mDrawerLayout;
+    private ListView mDrawerList;
     Handler handler = null;
 
 
@@ -64,9 +73,12 @@ public class MainActivity extends Activity {
     private void initDatas() {
         handler = getHandler();
         mHander = new Handler();
+        mSorts = getResources().getStringArray(R.array.sorts_array);
     }
 
     private void setListeners() {
+        mDrawerList.setAdapter(new ArrayAdapter<>(this,R.layout.drawer_list_items,mSorts));
+        mDrawerList.setOnItemClickListener(new DrawerItemClickListner());
         // 下拉刷新事件回调（可选）
         listView.setOnRefreshStartListener(new ZrcListView.OnStartListener() {
             @Override
@@ -74,7 +86,6 @@ public class MainActivity extends Activity {
                 refresh();
             }
         });
-
         // 加载更多事件回调（可选）
         listView.setOnLoadMoreStartListener(new ZrcListView.OnStartListener() {
             @Override
@@ -108,6 +119,8 @@ public class MainActivity extends Activity {
     }
 
     private void findViews() {
+        mDrawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
+        mDrawerList = (ListView)findViewById(R.id.left_drawer);
         listView = (ZrcListView) findViewById(R.id.zListView);
     }
 
@@ -241,5 +254,26 @@ public class MainActivity extends Activity {
     protected void onDestroy() {
         super.onDestroy();
         pageId = 1;
+    }
+
+    private class DrawerItemClickListner implements android.widget.AdapterView.OnItemClickListener {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            clickItem(position);
+        }
+    }
+
+    private void clickItem(int position) {
+        Fragment fragment = new SortsFragment();
+        Bundle args = new Bundle();
+        args.putInt(SortsFragment.ARG_SORT_NUMBER,position);
+        fragment.setArguments(args);
+
+        FragmentManager fragmentManager = getFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.content_frame,fragment).commit();
+
+        mDrawerList.setItemChecked(position,true);
+        setTitle(mSorts[position]);
+        mDrawerLayout.closeDrawer(mDrawerList);
     }
 }

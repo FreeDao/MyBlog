@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string-array name="sorts">
-        <item>Android</item>
+    <string-array name="sorts_array">
+        <item>默认</item>
         <item>C/C++</item>
-        <item>Java</item>
+        <item>Android</item>
+        <item>Python</item>
         <item>Linux</item>
+        <item>Career</item>
         <item>碎碎念</item>
+        <item>IOS</item>
+        <item>Java</item>
+        <item>Git</item>
     </string-array>
     <string-array name="sorts_url">
         <item>http://www.picksomething.cn/?cat=5</item>
@@ -14,14 +19,6 @@
         <item>http://www.picksomething.cn/?cat=2</item>
         <item>http://www.picksomething.cn/?cat=4</item>
         <item>http://www.picksomething.cn/?cat=6</item>
-    </string-array>
-    <string-array name="functions">
-        <item>文章RSS</item>
-        <item>评论RSS</item>
-    </string-array>
-    <string-array name="functions_url">
-        <item>http://www.picksomething.cn/?feed=rss2</item>
-        <item>http://www.picksomething.cn/?feed=comments-rss2</item>
     </string-array>
 
 </resources>
