@@ -3,13 +3,16 @@ MyBlogClient
 
 Android client for www.picksomething.cn
 
-pull to fresh screenshot:
 
-![image](https://github.com/picksomething/MyBlogClient/blob/master/device-2015-03-10-151835.png)
+![image](https://github.com/picksomething/MyBlog/blob/master/device-2015-03-16-152720.png)
 
-push to load more screenshot:
+![image](https://github.com/picksomething/MyBlog/blob/master/device-2015-03-16-152743.png)
 
-![image](https://github.com/picksomething/MyBlogClient/blob/master/device-2015-03-10-151931.png)
+![image](https://github.com/picksomething/MyBlog/blob/master/device-2015-03-16-152834.png)
+
+![image](https://github.com/picksomething/MyBlog/blob/master/device-2015-03-16-152901.png)
+
+![image](https://github.com/picksomething/MyBlog/blob/master/device-2015-03-16-152929.png)
 
 用到的开源库:一个顺滑又漂亮的Android下拉刷新与加载更多列表组件。 
 https://github.com/zarics/ZrcListView
