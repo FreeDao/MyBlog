@@ -31,19 +31,15 @@ public class SortsFragment extends Fragment {
     private static final int LOAD_MORE_DATA = 1;
     private static final int STOP_LOAD_DATA = 2;
 
-    public static final String ARG_SORT_NUMBER = "sort_number";
-
-    private int pageId = 1;
-    private String sort_url;
-    private String url = "http://www.picksomething.cn";
+    public static final String ARG_SORT_NAME = "sortName";
 
     private ArrayList<HashMap<String, Object>> mSortResults = null;
     private MyBaseAdapter myBaseAdapter;
     private ZrcListView mZrcListView;
     private Handler handler;
+    private int pageId = 1;
 
     public SortsFragment() {
-
     }
 
     @Nullable
@@ -51,11 +47,10 @@ public class SortsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_sort, container, false);
         mZrcListView = (ZrcListView) view.findViewById(R.id.zrcListView);
-        int i = getArguments().getInt(ARG_SORT_NUMBER);
-        sort_url = "http://www.picksomething.cn/?cat=" + i;
-
+        String name = getArguments().getString(ARG_SORT_NAME);
         handler = getHandler();
-        startDownloadDatas(i);
+        startDownloadDatas(name);
+        mZrcListView.startLoadMore();
         // 设置默认偏移量，主要用于实现透明标题栏功能。（可选）
         //setOffset();
         // 设置下拉刷新的样式（可选，但如果没有Header则无法下拉刷新）
@@ -92,14 +87,12 @@ public class SortsFragment extends Fragment {
     }
 
     private void setListener() {
-        // 下拉刷新事件回调（可选）
         mZrcListView.setOnRefreshStartListener(new ZrcListView.OnStartListener() {
             @Override
             public void onStart() {
                 refresh();
             }
         });
-        // 加载更多事件回调（可选）
         mZrcListView.setOnLoadMoreStartListener(new ZrcListView.OnStartListener() {
             @Override
             public void onStart() {
@@ -115,7 +108,7 @@ public class SortsFragment extends Fragment {
                 if (pageId != 0) {
                     myBaseAdapter.notifyDataSetChanged();
                     mZrcListView.setRefreshSuccess("加载成功"); // 通知加载成功
-                    mZrcListView.startLoadMore(); // 开启LoadingMore功能
+                    //mZrcListView.startLoadMore(); // 开启LoadingMore功能
                 } else {
                     mZrcListView.setRefreshFail("加载失败");
                 }
@@ -130,9 +123,8 @@ public class SortsFragment extends Fragment {
                 Message msg = new Message();
                 ArrayList<HashMap<String, Object>> tempData = null;
                 pageId++;
-                String tempurl = "http://www.picksomething.cn/?paged=" + pageId;
-                Log.d("caobin", "tempurl = " + tempurl);
-                tempData = HttpUtils.getMyBlog(tempurl);
+                String tempUrl = "http://www.picksomething.cn/?paged=" + pageId;
+                tempData = HttpUtils.getMyBlog(tempUrl);
                 if (null != tempData) {
                     mSortResults.addAll(tempData);
                     msg.what = LOAD_MORE_DATA;
@@ -140,29 +132,23 @@ public class SortsFragment extends Fragment {
                     msg.what = STOP_LOAD_DATA;
                 }
                 handler.sendMessage(msg);
-                tempData = null;
+
             }
         }).start();
     }
 
     private void refreshListView() {
-        Log.d("caobin", "refreshListView date size is " + mSortResults.size());
         myBaseAdapter.notifyDataSetChanged();
         mZrcListView.setLoadMoreSuccess();
     }
 
-    private void startDownloadDatas(final int arg) {
+    private void startDownloadDatas(final String url) {
         new Thread() {
             @Override
             public void run() {
                 Message msg = new Message();
                 try {
-                    if(0 == arg){
-                        mSortResults = HttpUtils.getMyBlog(url);
-                    }else{
-                        mSortResults = HttpUtils.getMyBlog(sort_url);
-                    }
-
+                    mSortResults = HttpUtils.getMyBlog(url);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -171,7 +157,6 @@ public class SortsFragment extends Fragment {
             }
         }.start();
     }
-
 
 
     private Handler getHandler() {
@@ -205,7 +190,7 @@ public class SortsFragment extends Fragment {
     protected void initListView() {
         myBaseAdapter = new MyBaseAdapter(getActivity(), mSortResults);
         mZrcListView.setAdapter(myBaseAdapter);
-        mZrcListView.refresh(); // 主动下拉刷新
+        //mZrcListView.refresh(); // 主动下拉刷新
         mZrcListView.setOnItemClickListener(new ZrcListView.OnItemClickListener() {
             @Override
             public void onItemClick(ZrcListView parent, View view, int position, long id) {

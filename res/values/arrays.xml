@@ -9,16 +9,20 @@
         <item>Linux</item>
         <item>Career</item>
         <item>碎碎念</item>
-        <item>IOS</item>
         <item>Java</item>
         <item>Git</item>
     </string-array>
+
     <string-array name="sorts_url">
-        <item>http://www.picksomething.cn/?cat=5</item>
-        <item>http://www.picksomething.cn/?cat=49</item>
+        <item>http://www.picksomething.cn/</item>
         <item>http://www.picksomething.cn/?cat=2</item>
+        <item>http://www.picksomething.cn/?cat=3</item>
         <item>http://www.picksomething.cn/?cat=4</item>
+        <item>http://www.picksomething.cn/?cat=5</item>
         <item>http://www.picksomething.cn/?cat=6</item>
+        <item>http://www.picksomething.cn/?cat=7</item>
+        <item>http://www.picksomething.cn/?cat=22</item>
+        <item>http://www.picksomething.cn/?cat=89</item>
     </string-array>
 
 </resources>

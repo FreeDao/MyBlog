@@ -10,13 +10,9 @@
     <string name="slide_menu_title">一路追梦想</string>
     <string name="sort_title">分类</string>
     <string name="function_title">功能</string>
-    <string name="android">Android</string>
-    <string name="c">C/C++</string>
-    <string name="java">Java</string>
-    <string name="linux">Linux</string>
-    <string name="career">职业</string>
-    <string name="twitter">碎碎念</string>
-    <string name="articles_rss">文章RSS</string>
-    <string name="comments_rss">评论RSS</string>
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+    <string name="action_websearch">Web search</string>
+    <string name="app_not_available">Sorry, there\'s no web browser available</string>
 
 </resources>
