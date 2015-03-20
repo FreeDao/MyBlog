@@ -31,7 +31,7 @@ public class SortsFragment extends Fragment {
     private static final int LOAD_MORE_DATA = 1;
     private static final int STOP_LOAD_DATA = 2;
 
-    public static final String ARG_SORT_NAME = "sortName";
+    public static final String ARG_SORT_URL = "sortUrl";
 
     private ArrayList<HashMap<String, Object>> mSortResults = null;
     private MyBaseAdapter myBaseAdapter;
@@ -47,9 +47,9 @@ public class SortsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_sort, container, false);
         mZrcListView = (ZrcListView) view.findViewById(R.id.zrcListView);
-        String name = getArguments().getString(ARG_SORT_NAME);
+        String url = getArguments().getString(ARG_SORT_URL);
         handler = getHandler();
-        startDownloadDatas(name);
+        startDownloadDatas(url);
         mZrcListView.startLoadMore();
         // 设置默认偏移量，主要用于实现透明标题栏功能。（可选）
         //setOffset();
@@ -149,6 +149,7 @@ public class SortsFragment extends Fragment {
                 Message msg = new Message();
                 try {
                     mSortResults = HttpUtils.getMyBlog(url);
+                    msg.what = FIRST_REQUEST;
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

@@ -22,6 +22,7 @@ public class Splash extends Activity {
         setContentView(imageView);
         imageView.setScaleType(ImageView.ScaleType.FIT_XY);
         imageView.setImageResource(R.drawable.dream_splash);
+
         new Handler().postDelayed(new Runnable() {
             public void run() {
                 Intent i = new Intent(Splash.this, MainActivity.class);

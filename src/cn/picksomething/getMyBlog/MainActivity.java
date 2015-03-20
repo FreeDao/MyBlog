@@ -92,7 +92,7 @@ public class MainActivity extends Activity {
     private void clickItem(int position) {
         Fragment fragment = new SortsFragment();
         Bundle args = new Bundle();
-        args.putString(SortsFragment.ARG_SORT_NAME, mSortsUrl[position]);
+        args.putString(SortsFragment.ARG_SORT_URL, mSortsUrl[position]);
         fragment.setArguments(args);
 
         FragmentManager fragmentManager = getFragmentManager();
