@@ -37,14 +37,14 @@ public class HttpUtils {
         String regxName = "<h1 class=\"entry-title\"><a href=\".*?\" rel=\"bookmark\">(.*?)</a></h1>";
         String regxURL = "<h1 class=\"entry-title\"><a href=\"(.*?)\" rel=\"bookmark\">.*?</a></h1>";
         String regxDate = "<span class=\"sep\">.*?</span><a href=\".*?\" rel=\"bookmark\"><time class=\"entry-date\" datetime=\".*?\">(.*?)</time>";
-        ArrayList<String> blogName = matchResult(myBlogString,regxName);
-        ArrayList<String> blogURL =  matchResult(myBlogString,regxURL);
-        ArrayList<String> blogDate =  matchResult(myBlogString,regxDate);
-        for(int i = 0; i<blogName.size(); i++){
-            HashMap<String,Object> map = new HashMap<String, Object>();
-            map.put("name",blogName.get(i));
-            map.put("url",blogURL.get(i));
-            map.put("date",blogDate.get(i));
+        ArrayList<String> blogName = matchResult(myBlogString, regxName);
+        ArrayList<String> blogURL = matchResult(myBlogString, regxURL);
+        ArrayList<String> blogDate = matchResult(myBlogString, regxDate);
+        for (int i = 0; i < blogName.size(); i++) {
+            HashMap<String, Object> map = new HashMap<String, Object>();
+            map.put("name", blogName.get(i));
+            map.put("url", blogURL.get(i));
+            map.put("date", blogDate.get(i));
             result.add(map);
         }
         return result;
@@ -57,7 +57,7 @@ public class HttpUtils {
         while (m.find()) {
             MatchResult mr = m.toMatchResult();
             matchArray.add(mr.group(1));
-            Log.d("caobin","match result = " + mr.group(1));
+            Log.d("caobin", "match result = " + mr.group(1));
         }
         return matchArray;
     }
@@ -122,7 +122,6 @@ public class HttpUtils {
         HttpConnectionParams.setSoTimeout(httpParams, 3000);
         return new DefaultHttpClient(httpParams);
     }
-
 
 
 }
