@@ -1,10 +1,13 @@
 package cn.picksomething.getmyblog.ui;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.Window;
 import android.widget.ImageView;
 
@@ -43,15 +46,17 @@ public class Splash extends Activity {
         public void run() {
             long startTime = System.currentTimeMillis();
             long endTime = startTime;
+            Log.d("caobin","startTime = " + startTime);
             Message msg = Message.obtain();
             mSortResults = HttpUtils.getMyBlog(url);
             endTime = System.currentTimeMillis();
+            Log.d("caobin","endTime = " + endTime);
             long time = endTime - startTime;
-            if(time < 5000){
-                msg.what = LOAD_SUCCESS;
+            if(mSortResults.size() == 0){
+                msg.what = LOAD_ERROR;
                 handler.sendMessage(msg);
             }else{
-                msg.what = LOAD_ERROR;
+                msg.what = LOAD_SUCCESS;
                 handler.sendMessage(msg);
             }
         }
@@ -66,9 +71,10 @@ public class Splash extends Activity {
                     startHome();
                     break;
                 case LOAD_ERROR:
-                    startHome();
+                    showUpdateDialog();
                     break;
                 default:
+                    break;
             }
         }
     };
@@ -77,6 +83,26 @@ public class Splash extends Activity {
         Intent i = new Intent(this, MainActivity.class);
         this.startActivity(i);
         this.finish();
+    }
+
+    protected void showUpdateDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("提示");
+        builder.setMessage("网络未连接或者不太给力，是否继续等待加载？");
+        builder.setPositiveButton("是", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        builder.setNegativeButton("否", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+
+        builder.create().show();
     }
 
 
