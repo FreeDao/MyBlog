@@ -1,0 +1,5 @@
+/Users/caobin/github/MyBlog/build/intermediates/classes/debug
+/Users/caobin/github/MyBlog/build/intermediates/pre-dexed/debug/support-annotations-21.0.3-4633fe072abcb87d417b620e34799a4b637ac95f.jar
+/Users/caobin/github/MyBlog/build/intermediates/pre-dexed/debug/internal_impl-21.0.3-b817c8e6aa1c5ca99e272453599f2cc7d85e98c9.jar
+/Users/caobin/github/MyBlog/build/intermediates/pre-dexed/debug/classes-639c9a70be2709a8582991652ed5e235e2d88c65.jar
+/Users/caobin/github/MyBlog/build/intermediates/pre-dexed/debug/classes-7fa241d5b0b96453b1260a09e92374e946b898d6.jar
