@@ -17,6 +17,7 @@ import java.util.HashMap;
 
 import cn.picksomething.myblog.adapter.MyBaseAdapter;
 import cn.picksomething.myblog.http.HttpUtils;
+import cn.picksomething.myblog.model.BlogDatas;
 import zrc.widget.SimpleFooter;
 import zrc.widget.SimpleHeader;
 import zrc.widget.ZrcListView;
@@ -148,7 +149,11 @@ public class SortsFragment extends Fragment {
             public void run() {
                 Message msg = new Message();
                 try {
-                    mSortResults = HttpUtils.getMyBlog(url);
+                    if (BlogDatas.blogDatas == null) {
+                        mSortResults = HttpUtils.getMyBlog(url);
+                    } else {
+                        mSortResults = BlogDatas.blogDatas;
+                    }
                     msg.what = FIRST_REQUEST;
                 } catch (Exception e) {
                     e.printStackTrace();

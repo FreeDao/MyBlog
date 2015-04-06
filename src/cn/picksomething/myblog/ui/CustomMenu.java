@@ -1,4 +1,4 @@
-package cn.picksomething.getmyblog.ui;
+package cn.picksomething.myblog.ui;
 
 import android.app.Fragment;
 import android.content.Context;

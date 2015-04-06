@@ -17,6 +17,7 @@ import java.util.HashMap;
 import cn.picksomething.myblog.MainActivity;
 import cn.picksomething.myblog.R;
 import cn.picksomething.myblog.http.HttpUtils;
+import cn.picksomething.myblog.model.BlogDatas;
 
 /**
  * Created by caobin on 15/3/17.
@@ -33,29 +34,32 @@ public class Splash extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
+
         ImageView imageView = new ImageView(this);
         setContentView(imageView);
         imageView.setScaleType(ImageView.ScaleType.FIT_XY);
         imageView.setImageResource(R.drawable.dream_splash);
-        new Thread(new LoadData()){}.start();
+        BlogDatas.init();
+        startHome();
+        //new Thread(new LoadData()){}.start();
     }
 
-    private class LoadData implements Runnable{
+    private class LoadData implements Runnable {
 
         @Override
         public void run() {
             long startTime = System.currentTimeMillis();
             long endTime = startTime;
-            Log.d("caobin","startTime = " + startTime);
+            Log.d("caobin", "startTime = " + startTime);
             Message msg = Message.obtain();
             mSortResults = HttpUtils.getMyBlog(url);
             endTime = System.currentTimeMillis();
-            Log.d("caobin","endTime = " + endTime);
+            Log.d("caobin", "endTime = " + endTime);
             long time = endTime - startTime;
-            if(mSortResults.size() == 0){
+            if (mSortResults.size() == 0) {
                 msg.what = LOAD_ERROR;
                 handler.sendMessage(msg);
-            }else{
+            } else {
                 msg.what = LOAD_SUCCESS;
                 handler.sendMessage(msg);
             }
@@ -66,7 +70,7 @@ public class Splash extends Activity {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            switch (msg.what){
+            switch (msg.what) {
                 case LOAD_SUCCESS:
                     startHome();
                     break;
