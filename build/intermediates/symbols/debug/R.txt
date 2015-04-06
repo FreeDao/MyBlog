@@ -5,7 +5,9 @@ int anim abc_slide_in_top 0x7f040003
 int anim abc_slide_out_bottom 0x7f040004
 int anim abc_slide_out_top 0x7f040005
 int anim bottomitem_in 0x7f040006
-int anim topitem_in 0x7f040007
+int anim left_out 0x7f040007
+int anim right_in 0x7f040008
+int anim topitem_in 0x7f040009
 int array sorts_array 0x7f050000
 int array sorts_url 0x7f050001
 int attr actionBarDivider 0x7f010068

@@ -35,8 +35,9 @@ public class Splash extends Activity {
 
     private void startHome() {
         Intent i = new Intent(this, MainActivity.class);
-        this.startActivity(i);
-        this.finish();
+        Splash.this.startActivity(i);
+        overridePendingTransition(R.anim.right_in, R.anim.left_out);
+        Splash.this.finish();
     }
 
 }
