@@ -150,8 +150,10 @@ public class SortsFragment extends Fragment {
                 Message msg = new Message();
                 try {
                     if (BlogDatas.blogDatas == null) {
+                        Log.d("caobin","BlogDatas == null");
                         mSortResults = HttpUtils.getMyBlog(url);
                     } else {
+                        Log.d("caobin","BlogDatas != null");
                         mSortResults = BlogDatas.blogDatas;
                     }
                     msg.what = FIRST_REQUEST;

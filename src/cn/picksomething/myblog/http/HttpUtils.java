@@ -34,9 +34,9 @@ public class HttpUtils {
     public static ArrayList<HashMap<String, Object>> getMyBlog(String pageUrl) {
         ArrayList<HashMap<String, Object>> result = new ArrayList<HashMap<String, Object>>();
         String myBlogString = httpGet(pageUrl);
-        String regxName = "<h1 class=\"entry-title\"><a href=\".*?\" rel=\"bookmark\">(.*?)</a></h1>";
-        String regxURL = "<h1 class=\"entry-title\"><a href=\"(.*?)\" rel=\"bookmark\">.*?</a></h1>";
-        String regxDate = "<span class=\"sep\">.*?</span><a href=\".*?\" rel=\"bookmark\"><time class=\"entry-date\" datetime=\".*?\">(.*?)</time>";
+        String regxName = "<h1 class=\"title\"><a href=\".*?\">(.*?)</a></h1>";
+        String regxURL = "<h1 class=\"title\"><a href=\"(.*?)\">.*?</a></h1>";
+        String regxDate = "<span class=\"entry-date\"><i class=\"icon-time\" ></i>(.*?)</span>";
         ArrayList<String> blogName = matchResult(myBlogString, regxName);
         ArrayList<String> blogURL = matchResult(myBlogString, regxURL);
         ArrayList<String> blogDate = matchResult(myBlogString, regxDate);
